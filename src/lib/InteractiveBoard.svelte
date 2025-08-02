@@ -1,6 +1,8 @@
 <script lang="ts">
 	type Tile = 'x' | 'o' | '';
 
+	export let gameEnded = false;
+
 	const checkWin = (board: Tile[][]) => {
 		const winStates: Tile[][][] = [
 			[
@@ -141,6 +143,7 @@
 	export let interactive: boolean = true;
 
 	$: filled = checkWin(board);
+	$: gameEnded = !filled.flat().every(it => it === '')
 </script>
 
 <svg viewBox="-0.5 -0.5 4 4" xmlns="http://www.w3.org/2000/svg">
